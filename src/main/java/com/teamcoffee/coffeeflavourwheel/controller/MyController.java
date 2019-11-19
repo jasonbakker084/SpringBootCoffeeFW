@@ -21,7 +21,7 @@ public class MyController {
         return repository.findAll();
     }
 
-    @GetMapping(path = {"/{id}"})
+    @GetMapping(path = {"/users/{id}"})
     public ResponseEntity<User> findById(@PathVariable long id) {
         return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
                 .orElse(ResponseEntity.notFound().build());
@@ -33,7 +33,7 @@ public class MyController {
         return repository.count();
     }
 
-    @PostMapping
+    @PostMapping(value = "/users/posts")
     public User create(@RequestBody User user) {
         return repository.save(user);
     }

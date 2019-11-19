@@ -1,6 +1,9 @@
 package com.teamcoffee.coffeeflavourwheel;
 
+import com.teamcoffee.coffeeflavourwheel.UserService.TastedCoffeeService;
+import com.teamcoffee.coffeeflavourwheel.model.TastedCoffee;
 import com.teamcoffee.coffeeflavourwheel.model.User;
+import com.teamcoffee.coffeeflavourwheel.repository.TastedCoffeeRepository;
 import com.teamcoffee.coffeeflavourwheel.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +19,7 @@ public class MyRunner implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
 
     @Autowired
-    private UserRepository userRepository;
+    private TastedCoffeeRepository tastedCoffeeRepository;
 
     @Override
     @Transactional
@@ -24,13 +27,13 @@ public class MyRunner implements CommandLineRunner {
 
         logger.info("initializing users");
 
-        var u1 = new User("Jason", "Bakker", "jasonbakker084@gmail.com", "Barista");
-        userRepository.save(u1);
+        var u1 = new TastedCoffee("coffeeA", "JDE", "dark", "washed", "espresso", "Arabica");
+        tastedCoffeeRepository.save(u1);
 
-        var u2 = new User("Edward", "Idema", "e.idema@gmail.com", "Barista");
-        userRepository.save(u2);
+        var u2 = new TastedCoffee("coffeeB", "S&D", "medium/dark", "washed", "espresso", "Arabica");
+        tastedCoffeeRepository.save(u2);
 
-        var u3 = new User("John", "Legend", "jlegend@gmail.com", "Barista");
-        userRepository.save(u3);
+        var u3 = new TastedCoffee("coffeeC", "Stooker", "light", "pulp natural", "filter", "Aribica");
+        tastedCoffeeRepository.save(u3);
     }
 }
